@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Untitled</title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Voidbreaker online</title>
+  <style>
+    body {
+      background: #0d0d0d;
+      color: #00ffea;
+      font-family: monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .container {
+      width: 380px;
+      border: 2px solid #00ffea;
+      border-radius: 6px;
+      overflow: hidden;
+      background: #111;
+    }
+
+    .bar {
+      height: 22px;
+      width: 1%;
+      background: linear-gradient(90deg, #00ffea, #0077ff);
+      transition: width 0.25s linear;
+    }
+
+    .text {
+      margin-top: 12px;
+      font-size: 16px;
+      color: #00ffea;
+    }
+
+    .error {
+      margin-top: 20px;
+      color: #ff0044;
+      font-size: 18px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="bar" id="bar"></div>
+  </div>
+
+  <div class="text" id="text">Cargando... 1%</div>
+  <div class="error" id="error">ERROR 121: Reiniciando proceso...</div>
+
+  <script>
+    const bar = document.getElementById('bar');
+    const text = document.getElementById('text');
+    const errorMsg = document.getElementById('error');
+
+    let progress = 1;
+
+    function updateBar() {
+      // Avance super lento desde el principio
+      progress += Math.random() * 0.1; // lentísimo
+
+      if (progress >= 98) {
+        // Mostrar error técnico
+        errorMsg.style.display = "block";
+        text.textContent = "Cargando... 98%";
+
+        setTimeout(() => {
+          // Reiniciar barra
+          progress = 1;
+          bar.style.width = "1%";
+          text.textContent = "Cargando... 1%";
+          errorMsg.style.display = "none";
+          updateBar();
+        }, 2000);
+
+        return;
+      }
+
+      bar.style.width = progress + "%";
+      text.textContent = "Cargando... " + Math.floor(progress) + "%";
+
+      setTimeout(updateBar, 200);
+    }
+
+    updateBar();
+  </script>
+
+</body>
+</html>
+    
+  </body>
+  
+</html>
